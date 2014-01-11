@@ -20,8 +20,6 @@ This repository contains **Dockerfile** of [RethinkDB](http://www.rethinkdb.com/
 
 ### Usage
 
-    docker run dockerfile/rethinkdb
-
 #### Run the first host of cluster
 
     docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 dockerfile/rethinkdb --bind all
