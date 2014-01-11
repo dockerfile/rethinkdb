@@ -8,6 +8,7 @@
 FROM dockerfile/ubuntu
 
 # Install RethinkDB.
+RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:rethinkdb/ppa
 RUN apt-get update
 RUN apt-get install -y rethinkdb
