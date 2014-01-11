@@ -22,10 +22,10 @@ This repository contains **Dockerfile** of [RethinkDB](http://www.rethinkdb.com/
 
     docker run dockerfile/rethinkdb
 
-#### Running the first host of cluster
+#### Run the first host of cluster
 
-    docker run -name="rethinkdb" -d dockerfile/rethinkdb --bind all
+    docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 dockerfile/rethinkdb --bind all
 
-#### Adding subsequent hosts to cluster
+#### Run subsequent hosts joining to cluster
 
-    docker run -name="rethinkdb" -d dockerfile/rethinkdb --join <first-host-ip>:29015 --bind all
+    docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 dockerfile/rethinkdb --bind all --join <first-host-ip>:29015
