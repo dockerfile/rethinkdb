@@ -15,7 +15,6 @@ RUN apt-get install -y rethinkdb
 
 # Mount directory.
 VOLUME ["/rethinkdb"]
-WORKDIR /rethinkdb
 
 # Expose ports.
 #   - 8080: web UI
@@ -24,5 +23,4 @@ WORKDIR /rethinkdb
 EXPOSE 8080 28015 29015
 
 # Turn this container into an executable.
-ENTRYPOINT ["rethinkdb"]
-CMD ["-h"]
+ENTRYPOINT ["rethinkdb -d /rethinkdb"]
