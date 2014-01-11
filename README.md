@@ -1,1 +1,1 @@
-# RethinkDB Dockerfile for Trusted Builds
+## RethinkDB Dockerfile for Trusted Builds
