@@ -23,4 +23,4 @@ VOLUME ["/rethinkdb"]
 EXPOSE 8080 28015 29015
 
 # Turn this container into an executable.
-ENTRYPOINT ["rethinkdb -d /rethinkdb"]
+ENTRYPOINT ["rethinkdb", "-d", "/rethinkdb"]
