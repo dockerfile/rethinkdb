@@ -15,7 +15,7 @@ This repository contains **Dockerfile** of [RethinkDB](http://www.rethinkdb.com/
 
 2. Download [trusted build](https://index.docker.io/u/dockerfile/rethinkdb/) from public [Docker Registry](https://index.docker.io/): `docker pull dockerfile/rethinkdb`
 
-   (alternatively, you can build an image from Dockerfile: `docker build -t="dockerfile/rethinkdb" .`)
+   (alternatively, you can build an image from Dockerfile: `docker build -t="dockerfile/rethinkdb" github.com/dockerfile/rethinkdb`)
 
 
 ### Usage

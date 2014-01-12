@@ -12,14 +12,11 @@ RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:rethinkdb/ppa
 RUN apt-get update
 RUN apt-get install -y rethinkdb
-RUN cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/instance1.conf
-RUN service rethinkdb restart
+RUN cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/node.1.conf
 
 # Mount directory.
 VOLUME ["/rethinkdb"]
-
-# Prepare cluster directory.
-RUN rethinkdb create -d /rethinkdb
+WORKDIR /rethinkdb
 
 # Expose ports.
 #   - 8080: web UI
@@ -30,4 +27,4 @@ EXPOSE 28015
 EXPOSE 29015
 
 # Define an entry point.
-ENTRYPOINT ["rethinkdb", "-d", "/rethinkdb"]
+ENTRYPOINT ["rethinkdb"]
