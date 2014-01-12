@@ -18,6 +18,9 @@ RUN service rethinkdb restart
 # Mount directory.
 VOLUME ["/rethinkdb"]
 
+# Prepare cluster directory.
+RUN rethinkdb create -d /rethinkdb
+
 # Expose ports.
 #   - 8080: web UI
 #   - 28015: process
