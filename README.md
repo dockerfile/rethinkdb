@@ -6,7 +6,7 @@ This repository contains **Dockerfile** of [RethinkDB](http://www.rethinkdb.com/
 
 ### Dependencies
 
-* [dockerfile/ubuntu](https://github.com/dockerfile/ubuntu)
+* [dockerfile/ubuntu](http://dockerfile.github.io/#/ubuntu)
 
 
 ### Installation
@@ -22,8 +22,8 @@ This repository contains **Dockerfile** of [RethinkDB](http://www.rethinkdb.com/
 
 #### Run the first host of cluster
 
-    docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 dockerfile/rethinkdb --bind all --canonical-address <first-host-ip>
+    docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 dockerfile/rethinkdb --bind all --canonical-address <public-ip-of-this-host>
 
 #### Run subsequent hosts joining to cluster
 
-    docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 dockerfile/rethinkdb --bind all --join <first-host-ip>:29015
+    docker run -d -p 8080:8080 -p 28015:28015 -p 29015:29015 dockerfile/rethinkdb --bind all --join <public-ip-of-first-host>:29015 --canonical-address <public-ip-of-this-host>
