@@ -13,9 +13,14 @@ RUN apt-get update
 RUN apt-get install -y rethinkdb
 RUN cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/node.conf
 
-# Define mountable data directory.
+# Define mountable directories.
 VOLUME ["/data"]
-WORKDIR /data
+
+# Define working directory.
+WORKDIR "/data"
+
+# Define default command.
+ENTRYPOINT ["rethinkdb"]
 
 # Expose ports.
 #   - 8080: web UI
@@ -24,6 +29,3 @@ WORKDIR /data
 EXPOSE 8080
 EXPOSE 28015
 EXPOSE 29015
-
-# Define an entry point.
-ENTRYPOINT ["rethinkdb"]
