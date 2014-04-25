@@ -13,7 +13,7 @@ RUN apt-get update
 RUN apt-get install -y rethinkdb
 RUN cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/node.conf
 
-# Mount directory.
+# Define mountable data directory.
 VOLUME ["/data"]
 WORKDIR /data
 
