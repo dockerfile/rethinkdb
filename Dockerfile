@@ -14,8 +14,8 @@ RUN apt-get install -y rethinkdb
 RUN cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/node.conf
 
 # Mount directory.
-VOLUME ["/rethinkdb"]
-WORKDIR /rethinkdb
+VOLUME ["/data"]
+WORKDIR /data
 
 # Expose ports.
 #   - 8080: web UI
