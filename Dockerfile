@@ -8,11 +8,10 @@
 FROM dockerfile/ubuntu
 
 # Install RethinkDB.
-RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:rethinkdb/ppa
 RUN apt-get update
 RUN apt-get install -y rethinkdb
-RUN cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/node.1.conf
+RUN cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/node.conf
 
 # Mount directory.
 VOLUME ["/rethinkdb"]
