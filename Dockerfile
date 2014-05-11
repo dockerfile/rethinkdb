@@ -21,6 +21,7 @@ WORKDIR /data
 
 # Define default command.
 ENTRYPOINT ["rethinkdb"]
+CMD []
 
 # Expose ports.
 #   - 8080: web UI
