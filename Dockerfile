@@ -8,9 +8,10 @@
 FROM dockerfile/ubuntu
 
 # Install RethinkDB.
-RUN add-apt-repository -y ppa:rethinkdb/ppa
-RUN apt-get update
-RUN apt-get install -y rethinkdb
+RUN \
+  add-apt-repository -y ppa:rethinkdb/ppa && \
+  apt-get update && \
+  apt-get install -y rethinkdb
 
 # Define mountable directories.
 VOLUME ["/data"]
