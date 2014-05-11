@@ -11,7 +11,6 @@ FROM dockerfile/ubuntu
 RUN add-apt-repository -y ppa:rethinkdb/ppa
 RUN apt-get update
 RUN apt-get install -y rethinkdb
-RUN cp /etc/rethinkdb/default.conf.sample /etc/rethinkdb/instances.d/node.conf
 
 # Define mountable directories.
 VOLUME ["/data"]
@@ -20,8 +19,7 @@ VOLUME ["/data"]
 WORKDIR /data
 
 # Define default command.
-ENTRYPOINT ["rethinkdb"]
-CMD ["--bind", "all"]
+CMD ["rethinkdb", "--bind", "all"]
 
 # Expose ports.
 #   - 8080: web UI
