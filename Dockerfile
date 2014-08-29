@@ -12,7 +12,8 @@ RUN \
   echo "deb http://download.rethinkdb.com/apt `lsb_release -cs` main" > /etc/apt/sources.list.d/rethinkdb.list && \
   wget -O- http://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && \
   apt-get update && \
-  apt-get install -y rethinkdb
+  apt-get install -y rethinkdb && \
+  rm -rf /var/lib/apt/lists/*
 
 # Define mountable directories.
 VOLUME ["/data"]
