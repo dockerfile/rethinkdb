@@ -24,10 +24,10 @@ This repository contains **Dockerfile** of [RethinkDB](http://www.rethinkdb.com/
 
 #### Run the first host of cluster
 
-    docker run -d -h `hostname` -p 8080:8080 -p 28015:28015 -p 29015:29015 -v <data-dir>:/data dockerfile/rethinkdb rethinkdb --bind all --canonical-address `curl -s ipecho.net/plain`
+    docker run -d -h `hostname` -p 8080:8080 -p 28015:28015 -p 29015:29015 -v <data-dir>:/data dockerfile/rethinkdb rethinkdb -d /data --bind all --canonical-address `curl -s ipecho.net/plain`
 
 #### Run subsequent hosts joining to cluster
 
-    docker run -d -h `hostname` -p 8080:8080 -p 28015:28015 -p 29015:29015 -v <data-dir>:/data dockerfile/rethinkdb rethinkdb --bind all --canonical-address `curl -s ipecho.net/plain` --join <first-host-ip>:29015
+    docker run -d -h `hostname` -p 8080:8080 -p 28015:28015 -p 29015:29015 -v <data-dir>:/data dockerfile/rethinkdb rethinkdb -d /data --bind all --canonical-address `curl -s ipecho.net/plain` -j <first-host-ip>:29015
 
 After few seconds, Open `http://<host>:8080`.
