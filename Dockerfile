@@ -12,7 +12,9 @@ RUN \
   echo "deb http://download.rethinkdb.com/apt `lsb_release -cs` main" > /etc/apt/sources.list.d/rethinkdb.list && \
   wget -O- http://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && \
   apt-get update && \
-  apt-get install -y rethinkdb && \
+## Use this to find the right version name (i.e. "1.14.0-0ubuntu1~trusty")
+#  apt-cache showpkg rethinkdb && \
+  apt-get install -y rethinkdb=1.14.0-0ubuntu1~trusty && \
   rm -rf /var/lib/apt/lists/*
 
 # Define mountable directories.
