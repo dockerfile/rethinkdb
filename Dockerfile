@@ -14,7 +14,7 @@ RUN \
   apt-get update && \
 ## Use this to find the right version name (i.e. "1.14.0-0ubuntu1~trusty")
 #  apt-cache showpkg rethinkdb && \
-  apt-get install -y rethinkdb=1.14.0-0ubuntu1~trusty && \
+  apt-get install -y rethinkdb=1.14.0-0ubuntu1~`lsb_release -cs` && \
   rm -rf /var/lib/apt/lists/*
 
 # Define mountable directories.
