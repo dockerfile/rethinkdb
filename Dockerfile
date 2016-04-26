@@ -1,22 +1,19 @@
-#
-# RethinkDB Dockerfile
-#
-# https://github.com/dockerfile/rethinkdb
-#
+FROM debian:jessie
+MAINTAINER Elifarley Cruz <elifarley@gmail.com>
 
-# Pull base image.
-FROM dockerfile/ubuntu
+ADD http://download.rethinkdb.com/apt/pubkey.gpg /etc/apt/rethinkdb-pubkey.gpg
 
-# Install RethinkDB.
-RUN \
-  echo "deb http://download.rethinkdb.com/apt `lsb_release -cs` main" > /etc/apt/sources.list.d/rethinkdb.list && \
-  wget -O- http://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && \
-  apt-get update && \
-  apt-get install -y rethinkdb python-pip && \
-  rm -rf /var/lib/apt/lists/*
+ENV RM_ITEMS '/tmp/* /var/tmp/* /var/backups/* /usr/share/man /usr/share/doc /var/lib/apt/lists/*'
 
-# Install python driver for rethinkdb
-RUN pip install rethinkdb
+RUN printf 'APT::Get::Install-Recommends "false";\nDpkg::Options {\n"--force-confdef";\n"--force-confold";\n}' \
+  > /etc/apt/apt.conf.d/local && \
+  echo "deb http://download.rethinkdb.com/apt jessie main" > /etc/apt/sources.list.d/rethinkdb.list && \
+  apt-key add /etc/apt/rethinkdb-pubkey.gpg && \
+  apt-get update && apt-get -y dist-upgrade && \
+  apt-get install -y --no-install-recommends rethinkdb python-pip && \
+  apt-get autoremove --purge -y && apt-get clean && \
+  pip install rethinkdb && \
+  rm -rf $RM_ITEMS
 
 # Define mountable directories.
 VOLUME ["/data"]
@@ -24,13 +21,10 @@ VOLUME ["/data"]
 # Define working directory.
 WORKDIR /data
 
-# Define default command.
-CMD ["rethinkdb", "--bind", "all"]
+ENTRYPOINT ["rethinkdb", "--bind", "all"]
 
 # Expose ports.
 #   - 8080: web UI
 #   - 28015: process
 #   - 29015: cluster
-EXPOSE 8080
-EXPOSE 28015
-EXPOSE 29015
+EXPOSE 8080 28015 29015
