@@ -15,7 +15,7 @@ def is_healty():
         r.db('rethinkdb')
             .table('table_status')
             .get_field('status')
-            .map(lambda status: status.values())
+            .concat_map(lambda status: status.values())
             .reduce(r.and_)
             .default(True)
     )
