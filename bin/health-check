@@ -4,7 +4,7 @@ import sys
 import rethinkdb as r
 
 
-def is_healty():
+def is_healthy():
     can_access_status = (
         r.db('rethinkdb')
             .table('server_status')
@@ -27,7 +27,7 @@ def is_healty():
         return False
 
 
-if is_healty():
+if is_healthy():
     sys.exit(0)
 else:
     sys.exit(1)
