@@ -18,6 +18,10 @@ RUN \
 # Install python driver for rethinkdb
 RUN pip install rethinkdb
 
+# Set up server health-checking script:
+COPY bin/health-check /bin/health-check
+HEALTHCHECK --interval=5s CMD /bin/health-check
+
 # Define mountable directories.
 VOLUME ["/data"]
 
